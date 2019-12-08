@@ -1,0 +1,34 @@
+
+<div class="wrapper">
+    <h3>Personal Details</h3>
+    <div id="formContent">
+  <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+      <input type="text" #skills="ngModel" [(ngModel)]="userService.selectedUser.skills" name="skills" placeholder="Skills"
+      required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+      <div *ngIf="signUpForm.submitted && !fullName.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+      <input type="text" #activities="ngModel" [(ngModel)]="userService.selectedUser.activities" name="activities" placeholder="Activities"
+      [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+      <div *ngIf="signUpForm.submitted && email.errors">
+        <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+      </div>
+    
+  
+  
+      <input type="text" #achievements="ngModel" [(ngModel)]="userService.selectedUser.achievements" name="achievements" placeholder="Achievements">
+        
+      <input type="text" #experience="ngModel" [(ngModel)]="userService.selectedUser.experience" name="experience" placeholder="Experiences">
+  
+   
+  
+  
+      <div *ngIf="signUpForm.submitted && password.errors">
+        <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+        <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+      </div>
+      <input type="submit" (click)="onSubmit()" value="Submit">
+
+    </form>
+  </div>
+  </div>

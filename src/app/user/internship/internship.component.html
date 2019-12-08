@@ -1,0 +1,34 @@
+
+<div class="wrapper">
+  <h3>Internship Application</h3>
+  <div id="formContent">
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+    <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="Name"
+    required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+    <div *ngIf="signUpForm.submitted && !fullName.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+    <input type="number" #age="ngModel" [(ngModel)]="userService.selectedUser.email" name="age" placeholder="Age"
+    [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+    <div *ngIf="signUpForm.submitted && email.errors">
+      <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+    </div>
+  
+
+
+    <input type="text" #gender="ngModel" [(ngModel)]="userService.selectedUser.gender" name="gender" placeholder="Gender">
+      
+    <input type="text" #cnic="ngModel" [(ngModel)]="userService.selectedUser.cnic" name="CNIC" placeholder="CNIC" required>
+
+    <input type="date" #dob="ngModel" [(ngModel)]="userService.selectedUser.dob" name="DOB" placeholder="DOB">
+ 
+
+
+    <div *ngIf="signUpForm.submitted && password.errors">
+      <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+      <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+    </div>
+    <input type="submit" (click)="onNext()" value="Next">
+  </form>
+</div>
+</div>
